@@ -1,3 +1,6 @@
+import React from 'react'
+import {render} from 'react-dom'
+
 // create Pet component
 const Pet = ({name, animal, breed}) => {
   // destructuring "props"
@@ -37,4 +40,4 @@ const App = () => {
 }
 
 // render the App component to the DOM
-ReactDOM.render(React.createElement(App), document.getElementById('root'))
+render(React.createElement(App), document.getElementById('root'))
