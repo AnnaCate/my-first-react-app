@@ -1,11 +1,11 @@
 // 
 
 // create Pet component 
-const Pet = props => {
+const Pet = ({name, animal, breed}) => { // destructuring "props"
     return React.createElement("div", {}, [ // create array of elements
-        React.createElement("h1", {}, props.name), 
-        React.createElement("h2", {}, props.animal), 
-        React.createElement("h2", {}, props.breed)
+        React.createElement("h1", {}, name), 
+        React.createElement("h2", {}, animal), 
+        React.createElement("h2", {}, breed)
     ])
 }
 
