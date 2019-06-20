@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import {ANIMALS} from '@frontendmasters/pet'
+import React, {useState, useEffect} from 'react'
+import pet, {ANIMALS} from '@frontendmasters/pet'
 
 const SearchParams = () => {
   // setting states
@@ -10,6 +10,17 @@ const SearchParams = () => {
   const [animal, setAnimal] = useState('dog')
   const [breed, setBreed] = useState('')
   const [breeds, setBreeds] = useState([])
+
+  useEffect(() => {
+    setBreeds([])
+    setBreed('')
+    pet
+      .breeds(animal) // get all the breeds from the API for the selected animal
+      .then(res => {
+        const petNames = res.breeds.map(petObj => petObj.name)
+        setBreeds(petNames)
+      })
+  }, [animal]) // if {animal} changes, useEffect will fire
 
   return (
     <div className="search-params">
@@ -24,9 +35,10 @@ const SearchParams = () => {
             onChange={e => setLocation(e.target.value)}
           ></input>
         </label>
+
         {/* create animal dropdown menu */}
         <label htmlFor="animal">
-          animal
+          Animal
           <select
             id="animal"
             value={animal}
@@ -41,6 +53,7 @@ const SearchParams = () => {
             ))}
           </select>
         </label>
+
         {/* create breed dropdown menu */}
         <label htmlFor="breed">
           Breed
@@ -59,6 +72,7 @@ const SearchParams = () => {
             ))}
           </select>
         </label>
+
         <button>Submit</button>
       </form>
     </div>
