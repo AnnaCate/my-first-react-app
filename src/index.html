@@ -14,7 +14,16 @@
     <script src="https://unpkg.com/react@16.8.4/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16.8.4/umd/react-dom.development.js"></script>
     <script>
-        // Some JS will go here shortly
+        // create App component
+        const App = () => {
+            return React.createElement(
+                "div", {}, 
+            React.createElement("h1", {}, "Adopt Me!")
+            );
+        }
+
+        // render the App component to the DOM
+        ReactDOM.render(React.createElement(App), document.getElementById("root"));
     </script>
 </body>
 </html>
