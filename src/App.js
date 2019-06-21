@@ -2,40 +2,18 @@ import React from 'react'
 import {render} from 'react-dom'
 import Pet from './Pet'
 import SearchParam from './SearchParam'
+import {Router} from '@reach/router'
+import Details from './Details'
 
-// create App component using React.createElement 💩
-// const App = () => {
-//   return React.createElement('div', {}, [
-//     React.createElement('h1', {}, 'Adopt Me!'),
-//     React.createElement(Pet, {
-//       name: 'Henry',
-//       animal: 'Dog',
-//       breed: 'Weimaraner'
-//     }),
-//     React.createElement(Pet, {
-//       name: 'Bear',
-//       animal: 'Dog',
-//       breed: 'English Shepherd'
-//     }),
-//     React.createElement(Pet, {
-//       name: 'Piper Lou',
-//       animal: 'Dog',
-//       breed: 'English Shepherd'
-//     }),
-//     React.createElement(Pet, {
-//       name: 'Jack',
-//       animal: 'Dog',
-//       breed: 'Long-haired Dachshund'
-//     })
-//   ])
-// }
-
-// create App component using JSX 💯
+// create App component using JSX
 const App = () => {
   return (
     <div>
       <h1>Adopt Me!</h1>
-      <SearchParam />
+      <Router>
+        <SearchParam path="/" />
+        <Details path="/details/:id" />
+      </Router>
     </div>
   )
 }
