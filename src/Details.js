@@ -38,6 +38,9 @@ const Details = ({id}) => {
         {/* <pre>
           <code>{JSON.stringify(selectedPet, null, 4)}</code>
         </pre> */}
+        <div className="carousel">
+          <img src={selectedPet.animal.photos[0].large} alt="Pet"></img>
+        </div>
         <h1>{selectedPet.animal.name}</h1>
         <h2>{selectedPet.animal.breeds.primary}</h2>
         <h2>

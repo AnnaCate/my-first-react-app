@@ -2,14 +2,16 @@ import React from 'react'
 import {render} from 'react-dom'
 import Pet from './Pet'
 import SearchParam from './SearchParam'
-import {Router} from '@reach/router'
+import {Router, Link} from '@reach/router'
 import Details from './Details'
 
 // create App component using JSX
 const App = () => {
   return (
     <div>
-      <h1>Adopt Me!</h1>
+      <header>
+        <Link to="/">Adopt Me!</Link>
+      </header>
       <Router>
         <SearchParam path="/" />
         <Details path="/details/:id" />
