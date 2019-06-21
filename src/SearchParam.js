@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import pet, {ANIMALS} from '@frontendmasters/pet'
 import useDropdown from './useDropdown'
+import Results from './Results'
 
 const SearchParams = () => {
   // setting states
@@ -13,6 +14,15 @@ const SearchParams = () => {
   const [breeds, setBreeds] = useState([])
   const [animal, AnimalDropdown] = useDropdown('Animal', 'All', ANIMALS)
   const [breed, BreedDropdown, setBreed] = useDropdown('Breed', '', breeds)
+
+  const [petResults, setPetResults] = useState([])
+
+  async function requestPets() {
+    console.log({location, breed, type: animal})
+    // use pet API to get animals that match search criteria
+    const {animals} = await pet.animals({location, breed, type: animal})
+    setPetResults(animals || [])
+  }
 
   // lifecycle event
   useEffect(() => {
@@ -29,7 +39,12 @@ const SearchParams = () => {
 
   return (
     <div className="search-params">
-      <form>
+      <form
+        onSubmit={e => {
+          e.preventDefault()
+          requestPets()
+        }}
+      >
         {/* create location dropdown menu */}
         <label htmlFor="location">
           Location
@@ -49,6 +64,8 @@ const SearchParams = () => {
 
         <button>Submit</button>
       </form>
+
+      <Results pets={petResults} />
     </div>
   )
 }
