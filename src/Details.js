@@ -2,16 +2,11 @@ import React, {useState, useEffect} from 'react'
 import pet from '@frontendmasters/pet'
 
 const Details = ({id}) => {
-  // ya know...
-  // the most recent pet info for pet
-  // can be found from the API
-
   const [selectedPet, setSelectedPet] = useState({})
   const [isLoading, setIsLoading] = useState(true)
   const [isSuccessful, setIsSuccessful] = useState({success: false, err: null})
 
   async function getPet(petId) {
-    // const {animal} = await pet.animal(petId)
     pet
       .animal(petId)
       .then(animal => {
@@ -39,7 +34,10 @@ const Details = ({id}) => {
           <code>{JSON.stringify(selectedPet, null, 4)}</code>
         </pre> */}
         <div className="carousel">
-          <img src={selectedPet.animal.photos[0].large} alt="Pet"></img>
+          {selectedPet.animal.photos.map((photo, index) => (
+            <img key={index} src={photo.medium} alt="Pet"></img>
+          ))}
+          {/* <img src={selectedPet.animal.photos[0].large} alt="Pet"></img> */}
         </div>
         <h1>{selectedPet.animal.name}</h1>
         <h2>{selectedPet.animal.breeds.primary}</h2>
