@@ -35,10 +35,6 @@ const App = () => {
   return (
     <div>
       <h1>Adopt Me!</h1>
-      <Pet name="Henry" animal="Dog" breed="Weimaraner" />
-      <Pet name="Bear" animal="Dog" breed="English Shepherd" />
-      <Pet name="Piper Lou" animal="Dog" breed="English Shepherd" />
-      <Pet name="Jack" animal="Dog" breed="Dachshund" />
       <SearchParam />
     </div>
   )

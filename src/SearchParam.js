@@ -9,16 +9,13 @@ const SearchParams = () => {
   // useState returns an array, with the first item being the value of state
   // and the second item being a function to change the value of state
   const [location, setLocation] = useState('Seattle, WA')
-  // const [animal, setAnimal] = useState('All')
-  // const [breed, setBreed] = useState('')
   const [breeds, setBreeds] = useState([])
-  const [animal, AnimalDropdown] = useDropdown('Animal', 'All', ANIMALS)
+  const [animal, AnimalDropdown] = useDropdown('Animal', 'dog', ANIMALS)
   const [breed, BreedDropdown, setBreed] = useDropdown('Breed', '', breeds)
 
   const [petResults, setPetResults] = useState([])
 
   async function requestPets() {
-    console.log({location, breed, type: animal})
     // use pet API to get animals that match search criteria
     const {animals} = await pet.animals({location, breed, type: animal})
     setPetResults(animals || [])
@@ -35,7 +32,10 @@ const SearchParams = () => {
         const petBreeds = res.breeds.map(petObj => petObj.name)
         setBreeds(petBreeds)
       })
-  }, [animal]) // if {animal} changes, useEffect will fire
+  }, [animal, setBreed])
+  // if animal or setBreed changes, useEffect will fire
+  // setBreed is only included because React hooks wants it there
+  // it doesn't matter to us
 
   return (
     <div className="search-params">
