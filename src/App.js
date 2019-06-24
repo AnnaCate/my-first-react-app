@@ -4,6 +4,7 @@ import Pet from './Pet'
 import SearchParam from './SearchParam'
 import {Router, Link} from '@reach/router'
 import Details from './Details'
+import Cats from './Cats'
 
 // create App component using JSX
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
       <Router>
         <SearchParam path="/" />
         <Details path="/details/:id" />
+        <Cats path="/cats" />
       </Router>
     </div>
   )
